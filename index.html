@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<style>
+    .range-slider {
+        position: relative;
+        /* THIS IS THE RANGE SLIDER WITH, WHICH HAVE TO BE THE SAME AS THE TEXT CONTAINER */
+        width: 50%;
+    }
+    
+    .range-slider>input.range {
+        width: 100%;
+    }
+    
+    .range-slider>.range-badge {
+        position: absolute;
+        left: 50%;
+        top: 20px;
+        background: red;
+        color: #fff;
+        width: 35px;
+        border-radius: 5px;
+        text-align: center;
+        margin-left: -10px;
+        padding: 5px 0;
+    }
+    
+    .text-container {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        justify-content: space-between;
+        /* THIS IS THE TEXT CONTAINER WITH, WHICH HAVE TO BE THE SAME AS THE RANGE SLIDER */
+        width: 50%;
+        margin-bottom: -10px;
+    }
+    
+    .text {
+        font-weight: 700;
+    }
+</style>
+
+<body>
+    <div class="text-container">
+        <div class="text">
+            <p>LOW</p>
+        </div>
+        <div class="text">
+            <p>Rate the level of importance (to you)</p>
+        </div>
+        <div class="text">
+            <p>HIGH</p>
+        </div>
+    </div>
+    <div class="range-slider">
+        <input type="range" class="range" min="0" max="10" step="1" value="5" onchange="updateOutput()" />
+        <div class="range-badge">5</div>
+    </div>
+    <script>
+        // Update bubble without transition (you can uncomment this and comment the code on the bottom to get the bubble updated 
+        // without any transition effect).
+
+        // function updateOutput() {
+        //     let value = document.querySelector(".range").value;
+        //     let badge = document.querySelector(".range-badge");
+        //     let current = badge.innerHTML;
+        //     badge.innerHTML = value;
+        //     badge.style.left = value * 10 + '%';
+        // }
+
+
+        // Update bubble with transition
+        $(document).ready(function() {
+            var badge = $('.range-badge');
+
+            $('.range').on('change', function() {
+                var current = $(this).val();
+
+                badge.text(current).animate({
+                    'left': current * 10 + '%'
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
